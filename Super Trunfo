@@ -1,0 +1,125 @@
+#include <stdio.h>
+
+int main() {
+    int modo;
+    int forca1 = 90, velocidade1 = 80, inteligencia1 = 75;
+    int forca2 = 85, velocidade2 = 85, inteligencia2 = 70;
+
+    printf("=====================================\n");
+    printf("        SUPER TRUNFO EM C\n");
+    printf("=====================================\n");
+    printf("Escolha o modo de jogo:\n");
+    printf("1 - Basico (1 atributo, if e if-else)\n");
+    printf("2 - Intermediario (menu e multiplos atributos)\n");
+    printf("3 - Avancado (2 atributos + operador ternario)\n");
+    printf("=====================================\n");
+    printf("Modo: ");
+    scanf("%d", &modo);
+    printf("\n");
+
+    // ---------------------- MODO 1 ----------------------
+    if (modo == 1) {
+        int forca1_user, forca2_user;
+
+        printf("=== MODO BASICO ===\n");
+        printf("Digite a forca da carta 1: ");
+        scanf("%d", &forca1_user);
+        printf("Digite a forca da carta 2: ");
+        scanf("%d", &forca2_user);
+
+        if (forca1_user > forca2_user)
+            printf("Carta 1 venceu! (Forca %d > %d)\n", forca1_user, forca2_user);
+        else if (forca2_user > forca1_user)
+            printf("Carta 2 venceu! (Forca %d > %d)\n", forca2_user, forca1_user);
+        else
+            printf("Empate! (Forca %d = %d)\n", forca1_user, forca2_user);
+    }
+
+    // ---------------------- MODO 2 ----------------------
+    else if (modo == 2) {
+        int opcao;
+        printf("=== MODO INTERMEDIARIO ===\n");
+        printf("Escolha o atributo para comparar:\n");
+        printf("1 - Forca\n");
+        printf("2 - Velocidade\n");
+        printf("3 - Inteligencia\n");
+        printf("Opcao: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                if (forca1 > forca2)
+                    printf("Carta 1 venceu na Forca!\n");
+                else if (forca2 > forca1)
+                    printf("Carta 2 venceu na Forca!\n");
+                else
+                    printf("Empate na Forca!\n");
+                break;
+            case 2:
+                if (velocidade1 > velocidade2)
+                    printf("Carta 1 venceu na Velocidade!\n");
+                else if (velocidade2 > velocidade1)
+                    printf("Carta 2 venceu na Velocidade!\n");
+                else
+                    printf("Empate na Velocidade!\n");
+                break;
+            case 3:
+                if (inteligencia1 > inteligencia2)
+                    printf("Carta 1 venceu na Inteligencia!\n");
+                else if (inteligencia2 > inteligencia1)
+                    printf("Carta 2 venceu na Inteligencia!\n");
+                else
+                    printf("Empate na Inteligencia!\n");
+                break;
+            default:
+                printf("Opcao invalida!\n");
+        }
+    }
+
+    // ---------------------- MODO 3 ----------------------
+    else if (modo == 3) {
+        int atributo1, atributo2;
+        int total1 = 0, total2 = 0;
+
+        printf("=== MODO AVANCADO ===\n");
+        printf("Atributos disponiveis:\n");
+        printf("1 - Forca\n");
+        printf("2 - Velocidade\n");
+        printf("3 - Inteligencia\n");
+
+        printf("Escolha o primeiro atributo: ");
+        scanf("%d", &atributo1);
+        printf("Escolha o segundo atributo: ");
+        scanf("%d", &atributo2);
+
+        switch (atributo1) {
+            case 1: total1 += forca1; total2 += forca2; break;
+            case 2: total1 += velocidade1; total2 += velocidade2; break;
+            case 3: total1 += inteligencia1; total2 += inteligencia2; break;
+            default: printf("Atributo 1 invalido!\n");
+        }
+
+        switch (atributo2) {
+            case 1: total1 += forca1; total2 += forca2; break;
+            case 2: total1 += velocidade1; total2 += velocidade2; break;
+            case 3: total1 += inteligencia1; total2 += inteligencia2; break;
+            default: printf("Atributo 2 invalido!\n");
+        }
+
+        printf("\nTotal da Carta 1: %d\n", total1);
+        printf("Total da Carta 2: %d\n", total2);
+
+        (total1 > total2) ? printf("Carta 1 venceu!\n") :
+        (total2 > total1) ? printf("Carta 2 venceu!\n") :
+        printf("Empate!\n");
+    }
+
+    // ---------------------- INVALIDO ----------------------
+    else {
+        printf("Modo invalido! Reinicie o jogo.\n");
+    }
+
+    printf("\n=== FIM DO JOGO ===\n");
+
+    return 0;
+}
